@@ -5,6 +5,8 @@ using UnityEngine;
 public class GameController : MonoBehaviour {
 
 	public GameObject hazard;
+	public GUIText scoreText;
+	private int score;
 	public Vector3 spawnValues;
 	public int hazardCount;
 	public float spawnWait;
@@ -12,6 +14,8 @@ public class GameController : MonoBehaviour {
 	public float waveWait;
 
 	void Start () {
+		score = 0;
+		UpdateScore ();
 		StartCoroutine (SpawnWaves ());
 	}
 
@@ -28,4 +32,12 @@ public class GameController : MonoBehaviour {
 		}
 	}
 
+	void UpdateScore(){
+		scoreText.text = "Score: " + score;
+	}
+
+	public void AddScore(int newScoreValue){
+		score += newScoreValue;
+		UpdateScore ();
+	}
 }
